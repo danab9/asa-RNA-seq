@@ -1,14 +1,13 @@
-samples: "../resources/samples.tsv"
-
 # directories
+samples: "../resources/samples.tsv"
 reference: "../resources/reference/chromosome.fa"
 annotation: "../resources/reference/annotation.gff3"
-kraken_db: "../resources/kraken_db"
-contamination_reference: "../resources/references/flu.fa"
-
+adapters: "../resources/adapters"
 
 # parameters:
-decontamination: "True"
+skip_trimming: 'False'
+skip_fastQC: 'False'
+skip_qualimap: 'False'
 
 bowtie2:
   local: "--local" #"--local" or " "
@@ -23,18 +22,3 @@ trimmomatic:
     seedMissmatches: '2'
     palindromeClipThreshold: '30'
     simpleClipThreshold: '10'
-
-
-tree:
-  method: "iqtree" #{fasttree,raxml,iqtree}
-
-consenus:
-  q: 20 #Minimum quality score threshold to count base
-
-variability:
-  l: 2 #Window length
-
-skip_trimming: 'False'
-skip_fastQC: 'False'
-skip_qualimap: 'False'
-

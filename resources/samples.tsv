@@ -1,0 +1,7 @@
+sample	fq1	fq2
+hcc1395_normal_rep1	../resources/fastq/hcc1395_normal_rep1_r1.fastq.gz	../resources/fastq/hcc1395_normal_rep1_r2.fastq.gz
+hcc1395_normal_rep2	../resources/fastq/hcc1395_normal_rep2_r1.fastq.gz	../resources/fastq/hcc1395_normal_rep2_r2.fastq.gz
+hcc1395_normal_rep3	../resources/fastq/hcc1395_normal_rep3_r1.fastq.gz	../resources/fastq/hcc1395_normal_rep3_r2.fastq.gz
+hcc1395_tumor_rep1	../resources/fastq/hcc1395_tumor_rep1_r1.fastq.gz	../resources/fastq/hcc1395_tumor_rep1_r2.fastq.gz
+hcc1395_tumor_rep2	../resources/fastq/hcc1395_tumor_rep2_r1.fastq.gz	../resources/fastq/hcc1395_tumor_rep2_r2.fastq.gz
+hcc1395_tumor_rep3	../resources/fastq/hcc1395_tumor_rep3_r1.fastq.gz	../resources/fastq/hcc1395_tumor_rep3_r2.fastq.gz

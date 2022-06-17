@@ -1,14 +1,3 @@
-r1 = lambda wildcards:samples.at[wildcards.sample, 'fq1']
-r2 = lambda wildcards:samples.at[wildcards.sample, 'fq2']
-
-
-# rule temp:  # what's that?
-#     input:
-#         qc=expand("../report/qc/fastq/{sample}_fastqc.html", sample=all_fq),
-#         trimmed_r1_p= expand("../results/trimmed/{myrthe}_1_P.fastq.gz", myrthe=IDS),
-#         trimmed_qc=expand("../report/qc/trimmed/{sample}_{number}_{paired}_fastqc.html", sample=IDS, number=['1','2'], paired=['P','UP'])
-#
-
 rule fastqc_untrimmed:
     input:
         fq="../resources/fastq/{sample}_{number}.fastq.gz"
