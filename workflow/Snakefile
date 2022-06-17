@@ -3,28 +3,25 @@ import pandas as pd
 
 samples = pd.read_csv(config["samples"],index_col="sample", sep ='\t')
 IDS=[s for s in list(samples.index)]
+all_fq = [ID + "_1" for ID in IDS] + [ID + "_2" for ID in IDS]
+wildcard_constraints:
+    sample= "hcc.+_.+_.+", #"[^\/]",#
+    #folder ="\w+"
 
-# all_fq = [ID + "_1" for ID in IDS] + [ID + "_2" for ID in IDS]
-# wildcard_constraints:
-#     sample= "ERR\d+", #"[^\/]",#
-#     #folder ="\w+"
+#include: "rules/bowtie.smk"
+#include: "rules/samtools.smk"
+include: "rules/qc.smk"
+include: "rules/denovo.smk"
 
-# include: "rules/bowtie.smk"
-# include: "rules/samtools.smk"
-# include: "rules/qc.smk"
-# include: "rules/msa.smk"
-# include: "rules/denovo.smk"
-# include: "rules/artificialref.smk"
-# include: "rules/screen.smk"
-# include: "rules/decontamination.smk"
-include: "rules/star.smk"
-include: "rules/featureCounts.smk"
 
 rule all:
     input:
-        #"../results/reference/Genome"
-        #expand("../results/bam/{sample}/Aligned.sortedByCoord.out.bam",sample=IDS)
-        expand("../results/counts/{sample}.txt", sample=IDS)
+        "../results/denovo_assembly/trinity.fasta",
+        #"../results/fastq/merged/merged_r2.fq",#
+        #expand("../results/fasta/{sample}.fa", sample=IDS),
+        "../results/qc/multiqc_report.html"
+
+
 
 
 
