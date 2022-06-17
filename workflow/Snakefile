@@ -19,7 +19,8 @@ rule all:
         "../results/denovo_assembly/trinity.fasta",
         #"../results/fastq/merged/merged_r2.fq",#
         #expand("../results/fasta/{sample}.fa", sample=IDS),
-        "../results/qc/multiqc_report.html"
+        "../results/qc/multiqc_report.html",
+        expand("../results/counts/{sample}.txt", sample=IDS)
 
 
 
