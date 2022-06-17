@@ -18,11 +18,13 @@ IDS=[s for s in list(samples.index)]
 # include: "rules/screen.smk"
 # include: "rules/decontamination.smk"
 include: "rules/star.smk"
+include: "rules/featureCounts.smk"
 
 rule all:
     input:
         #"../results/reference/Genome"
-        expand("../results/bam/{sample}/Aligned.sortedByCoord.out.bam",sample=IDS)
+        #expand("../results/bam/{sample}/Aligned.sortedByCoord.out.bam",sample=IDS)
+        expand("../results/counts/{sample}.txt", sample=IDS)
 
 
 
