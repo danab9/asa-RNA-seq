@@ -1,7 +1,8 @@
 samples: "../resources/samples.tsv"
 
 # directories
-references: "../resources/references/references.fa"
+reference: "../resources/reference/chromosome.fa"
+annotation: "../resources/reference/annotation.gff3"
 kraken_db: "../resources/kraken_db"
 contamination_reference: "../resources/references/flu.fa"
 
