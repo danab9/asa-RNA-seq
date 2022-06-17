@@ -30,8 +30,8 @@ rule trimmomatic:
         r1 = lambda wildcards: samples.at[wildcards.sample, 'fq1'],
         r2 = lambda wildcards: samples.at[wildcards.sample, 'fq2']
     output:
-        r1_p= "../results/fastq/trimmed/{sample}_1_P.fastq.gz", r1_u = "../results/fastq/trimmed/{sample}_1_UP.fastq.gz",
-        r2_p= "../results/fastq/trimmed/{sample}_2_P.fastq.gz", r2_u = "../results/fastq/trimmed/{sample}_2_UP.fastq.gz"
+        r1_p= "../results/fastq/trimmed/{sample}_r1_P.fastq.gz", r1_u = "../results/fastq/trimmed/{sample}_r1_UP.fastq.gz",
+        r2_p= "../results/fastq/trimmed/{sample}_r2_P.fastq.gz", r2_u = "../results/fastq/trimmed/{sample}_r2_UP.fastq.gz"
     params:
         trailing = config["trimmomatic"]['trailing'],
         illuminaclip = ':'.join(config["trimmomatic"]["illuminaclip"].values())
@@ -60,11 +60,11 @@ rule qualimap:
 
 rule multiqc:
     input:
-        fqc=expand("../results/qc/fastq/{sample}_{number}_fastqc.html",sample=IDS,number=['1', '2']) if config["skip_trimming"] in['False',''] else [],
-        tqc=expand("../results/qc/trimmed/{sample}_{number}_{paired}_fastqc.html",sample=IDS,number=['1', '2'],paired=['P', 'UP'])
+        fqc=expand("../results/qc/fastq/{sample}_{number}_fastqc.html",sample=IDS,number=['r1', 'r2']) if config["skip_trimming"] in['False',''] else [],
+        tqc=expand("../results/qc/trimmed/{sample}_{number}_{paired}_fastqc.html",sample=IDS,number=['r1', 'r2'],paired=['P', 'UP'])
             if config['skip_fastQC'] in ['False',''] else [],
-        qualimap=expand("../results/qc/qualimap/{sample}/qualimapReport.html",sample=IDS) if config['skip_qualimap'] in
-                                                                                  ['False',''] else []
+        # qualimap=expand("../results/qc/qualimap/{sample}/qualimapReport.html",sample=IDS) if config['skip_qualimap'] in
+        #                                                                           ['False',''] else []
     output:
         "../results/qc/multiqc_report.html"
     conda:

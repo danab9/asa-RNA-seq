@@ -1,8 +1,9 @@
-name: spades
+name: trinity
 channels:
   - defaults
   - conda-forge
   - bioconda
 dependencies:
-  - spades==3.15.4
+  #- trinity
+  - biopython
 prefix: /home/mi/danab93/miniconda3/envs/spades_new
