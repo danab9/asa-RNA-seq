@@ -1,9 +1,8 @@
-name: trinity
+name: kallisto
 channels:
   - defaults
   - conda-forge
   - bioconda
 dependencies:
-  - trinity
-  - biopython
+  - kallisto
 prefix: /home/mi/danab93/miniconda3/envs/spades_new
