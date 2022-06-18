@@ -16,19 +16,18 @@
 rule merge:
     input:
         r1= expand(lambda wildcards: samples.at[wildcards.sample, 'fq1'], sample = IDS) if config["skip_trimming"]=='True' else expand("../results/fastq/trimmed/{sample}_r1_P.fastq.gz", sample = IDS),
-        r2= expand(lambda wildcards: samples.at[wildcards.sample, 'fq2'], sample = IDS) if config["skip_trimming"]=='True' else expand("../results/fastq/trimmed/{sample}_r2_P.fastq.gz", sample = IDS),
+        r2= expand(lambda wildcards: samples.at[wildcards.sample, 'fq2'], sample = IDS) if config["skip_trimming"]=='True' else expand("../results/fastq/trimmed/{sample}_r2_P.fastq.gz", sample = IDS)
     output:
         r1 = "../results/fastq/merged/merged_r1.fq",
         r2 = "../results/fastq/merged/merged_r2.fq" # has to be fq file for trinity
     log:
-        "../results/logs/denovo/merge.log"
+        "../results/logs/denovo/merge_r1.log"
     shell:
         """
-        cat {input.r1} > ../results/fastq/merged/merged_r1.fq
-        cat {input.r2} > ../results/fastq/merged/merged_r2.fq
-        gunzip ../results/fastq/merged/merged_r1.fq
-        gunzip ../results/fastq/merged/merged_r2.fq
+        zcat {input.r1} > {output.r1}  # zcat is cat for gzipped files
+        zcat {input.r2} > {output.r2} 
         """
+
 
 rule trinity:
     input:

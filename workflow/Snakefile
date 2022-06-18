@@ -11,6 +11,8 @@ wildcard_constraints:
 #include: "rules/samtools.smk"
 include: "rules/qc.smk"
 include: "rules/denovo.smk"
+include: "rules/star.smk"
+include: "rules/featureCounts.smk"
 
 
 rule all:
