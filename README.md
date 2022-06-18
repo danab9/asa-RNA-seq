@@ -1,1 +1,34 @@
-cp "storage/mi/myrthew00/seqan_dir/resources/adapters storage/mi/myrthew00/asa_rna/resources/reference/adapters"# asa-RNA-seq
+# asa-RNA-seq
+
+
+# Directories 
+**config**
+ - config
+
+**workflow**
+  - envs
+    - fastqc 
+  - report 
+  - rules
+  - scripts 
+  - Snakefile
+
+**resources** 
+  - reference
+     - chromosome.fa
+     - annotation.gff3
+  - adapters
+  - fastq
+  - samples.tsv
+ 
+**results** 
+  - logs
+  - bam 
+     - sorted (*or bam_sorted*
+  - sam 
+     - {sample}.sam
+  - trimmed
+- fastq
+  - trimmed
+     - {sample}_1.fastq.gz
+     - {sample}_2.fastq.gz

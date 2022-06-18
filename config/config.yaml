@@ -3,6 +3,7 @@ samples: "../resources/samples.tsv"
 reference: "../resources/reference/chromosome.fa"
 annotation: "../resources/reference/annotation.gff3"
 adapters: "../resources/adapters"
+sample_regex: "hcc.+_.+_.+"
 
 # parameters:
 skip_trimming: 'False'

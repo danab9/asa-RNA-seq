@@ -1,0 +1,8 @@
+name: rsem
+channels:
+  - defaults
+  - conda-forge
+  - bioconda
+dependencies:
+  - rsem
+prefix: /home/mi/danab93/miniconda3/envs/spades_new
