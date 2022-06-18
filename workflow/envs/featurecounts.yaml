@@ -1,0 +1,7 @@
+name: featurecounts
+channels:
+  - defaults
+  - bioconda
+dependencies:
+  - subread
+prefix: /storage/mi/danab93/miniconda3/envs/featurecounts
