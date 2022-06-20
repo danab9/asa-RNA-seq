@@ -80,11 +80,27 @@ rule rsem_prepare_reference:
     input:
         "../results/denovo_assembly/trinity.Trinity.fasta"
     output:
-        "../results/rsem_refseq/rsem_refseq"
+        multiext(
+            "../results/rsem_refseq/rsem_refseq",
+            ".1.bt2",
+            ".2.bt2",
+            ".3.bt2",
+            ".4.bt2",
+            ".grp",
+            ".idx.fa",
+            ".n2g.idx.fa",
+            ".rev.1.bt2",
+            ".rev.2.bt2",
+            ".seq",
+            ".ti",
+            ".transcripts.fa"
+        )
     conda:
         "../envs/rsem.yaml"
+    log:
+        "../results/logs/rsem/prepare_reference.log"
     shell:
-        "mkdir -p ../results/rsem_refseq/ && rsem-prepare-reference {input} {output}"
+        "mkdir -p ../results/rsem_refseq/ && rsem-prepare-reference --bowtie2 {input} ../results/rsem_refseq/rsem_refseq &> {log}"
 
 rule rsem:
    # Documentation: https://github.com/bli25/RSEM_tutorial#-single-sample-analysis,
@@ -93,29 +109,38 @@ rule rsem:
    # Example: https://github.com/dohlee/snakemake-star-rsem/blob/master/rules/rsem.smk
    # (conda install -c bioconda rsem)
     input:
-        fasta = "../results/denovo_assembly/trinity.Trinity.fasta",
         r1= lambda wildcards: samples.at[wildcards.sample, 'fq1'] if config["skip_trimming"]=='True' else "../results/fastq/trimmed/{sample}_r1_P.fastq.gz",
-        r2= lambda wildcards: samples.at[wildcards.sample, 'fq2'] if config["skip_trimming"]=='True' else "../results/fastq/trimmed/{sample}_r2_P.fastq.gz"
+        r2= lambda wildcards: samples.at[wildcards.sample, 'fq2'] if config["skip_trimming"]=='True' else "../results/fastq/trimmed/{sample}_r2_P.fastq.gz",
+        idx_ref= multiext(
+            "../results/rsem_refseq/rsem_refseq",
+            ".1.bt2",
+            ".2.bt2",
+            ".3.bt2",
+            ".4.bt2",
+            ".grp",
+            ".idx.fa",
+            ".n2g.idx.fa",
+            ".rev.1.bt2",
+            ".rev.2.bt2",
+            ".seq",
+            ".ti",
+            ".transcripts.fa"
+        )
     output:
-        counts = "../results/counts/rsem/{sample}/abundance.tsv",
-        dir = directory("../results/counts/rsem/{sample}")
+        counts = "../results/counts/rsem/{sample}.genes.results"
+        # there are more files as output
     conda:
         "../envs/rsem.yaml"
     log:
         "../results/logs/denovo/rsem_quant_{sample}.log"
-    params:
-        trinity = directory("../results/denovo_assembly/trinity"),
-    threads: 4
+    # params:
+    #     trinity = directory("../results/denovo_assembly/trinity"),
+    threads: 8
     shell:
-        """
-            rsem-calculate-expression -p {threads} --paired-end \
-    					--bowtie2 
-    					--estimate-rspd \
-    					--append-names \
-    					--output-genome-bam \
-    					{input.r1} {input.r2} \
-    					{params.trinity} 
-      """
-   # maybe we first need to "prepare" the reference.
-   # needs a last input folder, something like exp/LPS_6h
-    #probably needs a bowtie path --bowtie2-path software/bowtie2-2.2.6 \
+        # some params I didn't include and idk if they're important:
+        #                       --estimate-rspd
+        #     					--append-names
+        #     					--output-genome-bam
+        """mkdir -p ../results/counts/rsem/ && rsem-calculate-expression -p {threads} \
+        --paired-end {input.r1} {input.r2} --bowtie2 ../results/rsem_refseq/rsem_refseq \
+        ../results/counts/rsem/{wildcards.sample} &> {log}"""

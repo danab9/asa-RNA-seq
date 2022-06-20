@@ -22,7 +22,8 @@ rule all:
         #"../results/fastq/merged/merged_r2.fq",
         #expand("../results/fasta/{sample}.fa", sample=IDS),
         "../results/qc/multiqc_report.html",
-        expand("../results/counts/{sample}.txt", sample=IDS)
+        expand("../results/counts/featureounts/{sample}.txt", sample=IDS),
+        expand("../results/counts/rsem/{sample}.genes.results", sample=IDS)
 
 
 
