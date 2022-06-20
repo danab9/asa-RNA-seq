@@ -3,7 +3,7 @@ rule featureCounts:
         gff = config['annotation'],
         bam = "../results/bam/{sample}/Aligned.sortedByCoord.out.bam"
     output:
-        "../results/counts/{sample}.txt"
+        "../results/counts/featureCounts/{sample}.txt"
     conda:
         "../envs/featurecounts.yaml"
     log:
