@@ -76,6 +76,16 @@ rule kallisto_quant:
         kallisto quant -i {input.index} -o {output.dir} -t {threads} {input.r1} {input.r2} &> {log}
         """
 
+rule rsem_prepare_reference:
+    input:
+        "../results/denovo_assembly/trinity.Trinity.fasta"
+    output:
+        "../results/rsem_refseq/rsem_refseq"
+    conda:
+        "../envs/rsem.yaml"
+    shell:
+        "mkdir -p ../results/rsem_refseq/ && rsem-prepare-reference {input} {output}"
+
 rule rsem:
    # Documentation: https://github.com/bli25/RSEM_tutorial#-single-sample-analysis,
    # http://deweylab.github.io/RSEM/README.html
@@ -98,7 +108,7 @@ rule rsem:
     threads: 4
     shell:
         """
-            rsem-calculate-expression -p 8 --paired-end \
+            rsem-calculate-expression -p {threads} --paired-end \
     					--bowtie2 
     					--estimate-rspd \
     					--append-names \
