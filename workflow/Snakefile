@@ -17,13 +17,10 @@ include: "rules/featureCounts.smk"
 
 rule all:
     input:
-        "../results/denovo_assembly/trinity.Trinity.fasta", #
-        # "../results/counts/kallisto/hcc1395_tumor_rep3/abundance.tsv",
-        #"../results/fastq/merged/merged_r2.fq",
-        #expand("../results/fasta/{sample}.fa", sample=IDS),
         "../results/qc/multiqc_report.html",
+        expand("../results/counts/kallisto/{sample}/abundance.tsv", sample=IDS),
         expand("../results/counts/featurecounts/{sample}.txt", sample=IDS),
-        expand("../results/counts/rsem/{sample}.genes.results", sample=IDS)
+        expand("../results/counts/rsem/{sample}.genes.results", sample=IDS),
 
 
 
