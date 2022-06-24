@@ -18,9 +18,10 @@ include: "rules/featureCounts.smk"
 rule all:
     input:
         "../results/qc/multiqc_report.html",
-        #"../results/counts/count_matrix.txt",
-        pca_deseq = '../results/differential_expression/deseq/pca.png',
-        # table_deseq = '../results/differential_expression/deseq/table.csv',
+        pca_deseq = '../results/differential_expression/deseq/pca.svg',
+        table_deseq = '../results/differential_expression/deseq/table.csv',
+         test= "test.txt"
+
 
 
 
