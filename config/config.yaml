@@ -4,6 +4,7 @@ reference: "../resources/reference/chromosome.fa"
 annotation: "../resources/reference/annotation.gff3"
 adapters: "../resources/adapters"
 sample_regex: "hcc.+_.+_.+"
+design: "normal" #used in Differential expression
 
 # parameters:
 skip_trimming: 'False'

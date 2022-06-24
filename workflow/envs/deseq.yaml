@@ -1,0 +1,11 @@
+name: trinity
+channels:
+  - defaults
+  - conda-forge
+  - bioconda
+dependencies:
+  - R
+  - r-purrr # conda forge
+  - r-tidyverse
+  - bioconductor-deseq2
+prefix: /home/mi/danab93/miniconda3/envs/spades_new
