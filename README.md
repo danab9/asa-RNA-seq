@@ -24,6 +24,10 @@
 **results** 
 
   - logs
+  - counts
+    - kallisto
+    - FeatureCounts
+    - rsem
   - bam 
      - sorted (*or bam_sorted*
   - sam 
