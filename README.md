@@ -22,6 +22,7 @@
   - samples.tsv
  
 **results** 
+
   - logs
   - bam 
      - sorted (*or bam_sorted*

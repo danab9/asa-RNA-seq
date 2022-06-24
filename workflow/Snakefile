@@ -5,10 +5,10 @@ samples = pd.read_csv(config["samples"],index_col="sample", sep ='\t')
 IDS=[s for s in list(samples.index)]
 all_fq = [ID + "_1" for ID in IDS] + [ID + "_2" for ID in IDS]
 wildcard_constraints:
-    sample= config["sample_regex"] #"hcc.+_.+_.+",
+    sample= config["sample_regex"]
 
-#include: "rules/bowtie.smk"
-#include: "rules/samtools.smk"
+include: "rules/readcorrection.smk"
+include: "rules/differentialexpression.smk"
 include: "rules/qc.smk"
 include: "rules/denovo.smk"
 include: "rules/star.smk"
