@@ -16,3 +16,15 @@ rule deseq:
     threads: 1
     script:
         "../scripts/deseq.R"
+
+rule sleuth:
+    input:
+        counts = expand("../results/counts/kallisto/{sample}/abundance.tsv", sample=IDS),
+    output:
+        pca = '../results/differential_expression/sleuth/pca.png',
+        table = '../results/differential_expression/sleuth/table.csv',
+    conda:
+        "../envs/env.yaml"
+    threads: 1
+    script:
+        "../scripts/sleuth.R"
