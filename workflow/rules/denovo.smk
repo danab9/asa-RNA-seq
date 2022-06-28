@@ -56,9 +56,10 @@ rule kallisto_quant:
     log:
         "../results/logs/denovo/kallisto_quant_{sample}.log"
     threads: 4
+    params: bootstraps=config["kallisto"]["bootstraps"]
     shell:
         """ 
-        kallisto quant -i {input.index} -o {output.dir} -t {threads} {input.r1} {input.r2} &> {log}
+        kallisto quant -i {input.index} -b {params.bootstraps} -o {output.dir} -t {threads} {input.r1} {input.r2} &> {log}
         """
 
 rule rsem_prepare_reference:

@@ -24,3 +24,6 @@ trimmomatic:
     seedMissmatches: '2'
     palindromeClipThreshold: '30'
     simpleClipThreshold: '10'
+
+kallisto:
+  bootstraps: 10

@@ -17,10 +17,12 @@ include: "rules/featureCounts.smk"
 
 rule all:
     input:
-        "../results/qc/multiqc_report.html",
-        pca_deseq = '../results/differential_expression/deseq/pca.svg',
-        table_deseq = '../results/differential_expression/deseq/table.csv',
-         test= "test.txt"
+#         "../results/qc/multiqc_report.html",
+#         pca_deseq = '../results/differential_expression/deseq/pca.svg',
+#         table_deseq = '../results/differential_expression/deseq/table.csv',
+#         test= "test.txt",
+        '../results/differential_expression/sleuth/table.csv'
+
 
 
 

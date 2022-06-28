@@ -30,9 +30,11 @@ rule sleuth:
         samples = config["samples"]
     output:
         pca = '../results/differential_expression/sleuth/pca.png',
-        table = '../results/differential_expression/sleuth/table.csv',
+        table = '../results/differential_expression/sleuth/table.csv'
     conda:
-        "../envs/env.yaml"
+        "../envs/sleuth.yaml"
+    log:
+        "../results/logs/differential_expression/sleuth.log"
     threads: 1
     script:
         "../scripts/sleuth.R"
