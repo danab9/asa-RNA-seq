@@ -18,6 +18,8 @@ kal_dirs <- file.path("../results/counts/kallisto", sample_id)
 s2c <- dplyr::select(samples_file, sample=sample, condition=condition)
 s2c$path <- kal_dirs
 
+
+
 # construct sleuth object
 so <- sleuth_prep(s2c, extra_bootstrap=TRUE)
 # fit full model
@@ -31,7 +33,7 @@ so <- sleuth_lrt(so, 'reduced', 'full')
 # examine test results
 sleuth_table <- sleuth_results(so, 'reduced:full', 'lrt', show_all = FALSE)
 sleuth_significant <- dplyr::filter(sleuth_table, qval <= 0.05)
-write.csv(sleuth_significant, file=snakemake@output[["table"]])  # save to file
+write.csv(sleuth_significant, snakemake@output[["table"]])  # save to file
 
 # for pca:
 # 1. collect gene names
