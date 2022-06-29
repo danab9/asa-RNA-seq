@@ -1,0 +1,13 @@
+{
+	"n_targets": 20006,
+	"n_bootstraps": 10,
+	"n_processed": 308698,
+	"n_pseudoaligned": 296390,
+	"n_unique": 88929,
+	"p_pseudoaligned": 96.0,
+	"p_unique": 28.8,
+	"kallisto_version": "0.48.0",
+	"index_version": 10,
+	"start_time": "Tue Jun 28 21:11:05 2022",
+	"call": "kallisto quant -i ../results/denovo_assembly/index.kaix -b 10 -o ../results/counts/kallisto/hcc1395_tumor_rep1 -t 4 ../results/fastq/trimmed/hcc1395_tumor_rep1_r1_P.fastq.gz ../results/fastq/trimmed/hcc1395_tumor_rep1_r2_P.fastq.gz"
+}
