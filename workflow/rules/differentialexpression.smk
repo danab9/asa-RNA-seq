@@ -1,7 +1,6 @@
 # SOURCES
 # Sleuth tutorial: https://pachterlab.github.io/sleuth_walkthroughs/trapnell/analysis.html
 # DESeq2: http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html
-# merging feature counts: https://divingintogeneticsandgenomics.rbind.io/post/merge-featurecount-table-from-rnaseq/
 # Deseq inspiration: https://github.com/snakemake-workflows/rna-seq-star-deseq2/blob/master/workflow/scripts/deseq2.R
 
 

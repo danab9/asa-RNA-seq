@@ -1,6 +1,6 @@
 rule fastqc_untrimmed:
     input:
-        fq="../resources/fastq/{sample}_{number}.fastq.gz"
+        fq = lambda wildcards: samples.at[wildcards.sample, 'fq'+ wildcards.number] #fq="resources/fastq/{sample}_{number}.fastq.gz"
     output:
         html="results/qc/fastq/{sample}_{number}_fastqc.html",
         zip="results/qc/fastq/{sample}_{number}_fastqc.zip"

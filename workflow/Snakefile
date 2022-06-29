@@ -1,4 +1,4 @@
-configfile : "../config/config.yaml"
+configfile : "config/config.yaml"
 import pandas as pd
 
 samples = pd.read_csv(config["samples"],index_col="sample", sep ='\t')
@@ -18,11 +18,11 @@ include: "rules/featureCounts.smk"
 rule all:
     input:
         # Note: We started with rcorrector, but did not get this to work yet.
-        "../results/qc/multiqc_report.html",
-        pca_deseq = '../results/differential_expression/deseq/pca.svg',
-        table_deseq = '../results/differential_expression/deseq/table.csv',
-        pca_sleuth = '../results/differential_expression/sleuth/pca.svg',
-        table_sleuth = '../results/differential_expression/sleuth/table.csv',
+        "results/qc/multiqc_report.html",
+        pca_deseq = 'results/differential_expression/deseq/pca.svg',
+        table_deseq = 'results/differential_expression/deseq/table.csv',
+        pca_sleuth = 'results/differential_expression/sleuth/pca.svg',
+        table_sleuth = 'results/differential_expression/sleuth/table.csv',
 
 
 
