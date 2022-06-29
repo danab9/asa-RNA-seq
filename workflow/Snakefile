@@ -17,11 +17,12 @@ include: "rules/featureCounts.smk"
 
 rule all:
     input:
-#         "../results/qc/multiqc_report.html",
-#         pca_deseq = '../results/differential_expression/deseq/pca.svg',
-#         table_deseq = '../results/differential_expression/deseq/table.csv',
-#         test= "test.txt",
-        '../results/differential_expression/sleuth/table.csv'
+        # Note: We started with rcorrector, but did not get this to work yet.
+        "../results/qc/multiqc_report.html",
+        pca_deseq = '../results/differential_expression/deseq/pca.svg',
+        table_deseq = '../results/differential_expression/deseq/table.csv',
+        pca_sleuth = '../results/differential_expression/sleuth/pca.svg',
+        table_sleuth = '../results/differential_expression/sleuth/table.csv',
 
 
 
