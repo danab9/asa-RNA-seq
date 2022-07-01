@@ -37,15 +37,15 @@ write.csv(sleuth_significant, snakemake@output[["table"]])  # save to file
 
 # for pca:
 # 1. collect gene names
-mart <- biomaRt::useMart(biomart = "ENSEMBL_MART_ENSEMBL",
-  dataset = "hsapiens_gene_ensembl",
-  host = 'ensembl.org')
-t2g <- biomaRt::getBM(attributes = c("ensembl_transcript_id", "ensembl_gene_id",
-    "external_gene_name"), mart = mart)
-t2g <- dplyr::rename(t2g, target_id = ensembl_transcript_id,
-  ens_gene = ensembl_gene_id, ext_gene = external_gene_name)
+# mart <- biomaRt::useMart(biomart = "ENSEMBL_MART_ENSEMBL",  # change to transcript level
+  #dataset = "hsapiens_gene_ensembl",
+  #host = 'ensembl.org')
+#t2g <- biomaRt::getBM(attributes = c("ensembl_transcript_id", "ensembl_gene_id",
+#    "external_gene_name"), mart = mart)
+#t2g <- dplyr::rename(t2g, target_id = ensembl_transcript_id,
+ # ens_gene = ensembl_gene_id, ext_gene = external_gene_name)
 # 1.1. add gene names into the sleuth table
-so <- sleuth_prep(s2c, target_mapping = t2g)
+so <- sleuth_prep(s2c)
 so <- sleuth_fit(so, ~condition, 'full')
 so <- sleuth_fit(so, ~1, 'reduced')
 so <- sleuth_lrt(so, 'reduced', 'full')
